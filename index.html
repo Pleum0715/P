@@ -73,8 +73,8 @@
     </div>
 
     <div id="stage4" class="hidden">
-      <p>ด่านที่ 4: รหัสมอดคือ: nidaiianrrdot</p>
-      <p>ใส่ประโยคที่แปลงแล้ว:</p>
+      <p>ด่านที่ 4: .-..- -- ..- .-..- -.. ...- . .-. .. -.-- -. / .-. -..</p>
+      <p>:</p>
       <input id="modCodeInput" placeholder="ใส่คำตอบตรงนี้">
       <button onclick="checkModCode()">ส่ง</button>
       <p id="modCodeResult"></p>
@@ -83,7 +83,7 @@
     <div id="stage5" class="hidden">
       <p>ด่านที่ 5: กดปุ่มด้านล่างเพื่อรับคำใบ้สุดท้าย</p>
       <button onclick="showFinalHint()">คลิกเพื่อดูคำใบ้</button>
-      <p id="finalHint" class="hidden">เป็นผู้ชาย</p>
+      <p id="finalHint" class="hidden">.-..- -- ..- -- .. -.- ...-. # -... ...- # .... ...- / .-.- - ..- .-.. -...- -.--. -- -...- -.--. -..-- .. ..- -..- ..-- ..- -...- . .-- ---.. -... ... ..-..</p>
     </div>
   </div>
 
@@ -149,14 +149,14 @@
 
     function showFinalHint() {
       document.getElementById('finalHint').classList.remove('hidden');
-      allAnswers.push('ด่าน 5: เป็นผู้ชาย');
+      allAnswers.push('ด่าน 5: มองดูสิ');
       updateAnswers();
     }
 
-   // ขออนุญาตเซนเซอร์ก่อน (เฉพาะ iOS)
+    // ขออนุญาตเซนเซอร์ก่อน (เฉพาะ iOS)
 if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
   const askBtn = document.createElement('button');
-  askBtn.innerText = 'คลิกเพื่อเริ่มเซนเซอร์';
+  askBtn.innerText = 'กดเมื่อถึงด่านที่ 3';
   askBtn.style.marginTop = '20px';
   askBtn.onclick = function () {
     DeviceOrientationEvent.requestPermission().then(response => {
