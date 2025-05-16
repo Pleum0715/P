@@ -153,12 +153,34 @@
       updateAnswers();
     }
 
-    window.addEventListener('deviceorientation', function(event) {
-      if (!stage3Visible && Math.abs(event.gamma) > 50) {
-        stage3Visible = true;
-        document.getElementById('tiltHint').innerText = 'ASCII: 80 104 117 32 107 104 117 109 32 107 111 116';
+   // ขออนุญาตเซนเซอร์ก่อน (เฉพาะ iOS)
+if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+  const askBtn = document.createElement('button');
+  askBtn.innerText = 'คลิกเพื่อเริ่มเซนเซอร์';
+  askBtn.style.marginTop = '20px';
+  askBtn.onclick = function () {
+    DeviceOrientationEvent.requestPermission().then(response => {
+      if (response === 'granted') {
+        window.addEventListener('deviceorientation', handleOrientation);
+        askBtn.remove();
+      } else {
+        alert('ต้องอนุญาตเพื่อใช้งานฟีเจอร์นี้');
       }
     });
+  };
+  document.body.appendChild(askBtn);
+} else {
+  window.addEventListener('deviceorientation', handleOrientation);
+}
+
+// ฟังก์ชันแยกออกมา
+function handleOrientation(event) {
+  if (!stage3Visible && Math.abs(event.gamma) > 50) {
+    stage3Visible = true;
+    document.getElementById('tiltHint').innerText = 'ASCII: 80 104 117 32 107 104 117 109 32 107 111 116';
+  }
+}
+
   </script>
 </body>
 </html>
