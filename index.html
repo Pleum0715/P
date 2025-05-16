@@ -65,7 +65,7 @@
     </div>
 
     <div id="stage3" class="hidden">
-      <p>ด่านที่ 3: (ลองเอียงมือถือ...)</p>
+      <p>ด่านที่ 3:</p>
       <p id="tiltHint"></p>
       <input id="answer3" placeholder="ตอบตรงนี้...">
       <button onclick="checkStage3()">ส่งคำตอบ</button>
@@ -73,7 +73,7 @@
     </div>
 
     <div id="stage4" class="hidden">
-      <p>ด่านที่ 4: .-..- -- ..- .-..- -.. ...- . .-. .. -.-- -. / .-. -..</p>
+      <p>ด่านที่ 4: -.-. -. -- .--. .--.- -.--.</p>
       <p>:</p>
       <input id="modCodeInput" placeholder="ใส่คำตอบตรงนี้">
       <button onclick="checkModCode()">ส่ง</button>
@@ -111,8 +111,8 @@
     function checkStage2() {
       const input = document.getElementById('answer2').value.trim();
       if (input === '1.28' || input === '1.28 วินาที' || input === '1.28s' || input === '1.28 sec') {
-        document.getElementById('result2').innerText = 'ถูกต้อง! คำใบ้: ㄆ และ เอียง3';
-        allAnswers.push('ด่าน 2: ' + input + ' → คำใบ้: ㄆ และ เอียง3');
+        document.getElementById('result2').innerText = 'ถูกต้อง! คำใบ้: ㄆ ';
+        allAnswers.push('ด่าน 2: ' + input + ' → คำใบ้: ㄆ ');
         updateAnswers();
         document.getElementById('stage2').classList.add('hidden');
         document.getElementById('stage3').classList.remove('hidden');
@@ -136,9 +136,9 @@
 
     function checkModCode() {
       const input = document.getElementById('modCodeInput').value.trim();
-      if (input === 'ไม่ได้เรียน รด') {
+      if (input === 'ขนมปัง') {
         document.getElementById('modCodeResult').innerText = 'ถูกต้อง! ไปต่อได้เลย';
-        allAnswers.push('ด่าน 4: ' + input);
+        allAnswers.push('ด่าน 4: ' + input+ ' → คำใบ้: ไม่ได้เรียน รด');
         updateAnswers();
         document.getElementById('stage4').classList.add('hidden');
         document.getElementById('stage5').classList.remove('hidden');
@@ -153,10 +153,10 @@
       updateAnswers();
     }
 
-    // ขออนุญาตเซนเซอร์ก่อน (เฉพาะ iOS)
+    
 if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
   const askBtn = document.createElement('button');
-  askBtn.innerText = 'กดเมื่อถึงด่านที่ 3';
+  askBtn.innerText = '...';
   askBtn.style.marginTop = '20px';
   askBtn.onclick = function () {
     DeviceOrientationEvent.requestPermission().then(response => {
