@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>พื้นที่สืบสวนสาย 20</title>
+  <style>
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .hidden {
+      display: none;
+    }
+    input {
+      margin-top: 10px;
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .answers {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ยินดีต้อนรับสู่พื้นที่สืบสวน</h1>
+    <p>ภารกิจของคุณคือ: หาความจริงว่าใครคือ <strong>พี่รหัสสาย 20</strong></p>
+
+    <div class="answers" id="answers"></div>
+
+    <div id="stage1">
+      <p>ด่านที่ 1: ความเร่งโน้มถ่วงของโลกมีค่าเท่าไหร่</p>
+      <input id="answer1" placeholder="ตอบตรงนี้...">
+      <button onclick="checkStage1()">ส่งคำตอบ</button>
+      <p id="result1"></p>
+    </div>
+
+    <div id="stage2" class="hidden">
+      <p>ด่านที่ 2: แสงเดินทางจากโลกถึงดวงจันทร์ใช้เวลาเท่าไหร่</p>
+      <input id="answer2" placeholder="ตอบตรงนี้...">
+      <button onclick="checkStage2()">ส่งคำตอบ</button>
+      <p id="result2"></p>
+    </div>
+
+    <div id="stage3" class="hidden">
+      <p>ด่านที่ 3: (ลองเอียงมือถือ...)</p>
+      <p id="tiltHint"></p>
+      <input id="answer3" placeholder="ตอบตรงนี้...">
+      <button onclick="checkStage3()">ส่งคำตอบ</button>
+      <p id="result3"></p>
+    </div>
+
+    <div id="stage4" class="hidden">
+      <p>ด่านที่ 4: รหัสมอดคือ: nidaiianrrdot</p>
+      <p>ใส่ประโยคที่แปลงแล้ว:</p>
+      <input id="modCodeInput" placeholder="ใส่คำตอบตรงนี้">
+      <button onclick="checkModCode()">ส่ง</button>
+      <p id="modCodeResult"></p>
+    </div>
+
+    <div id="stage5" class="hidden">
+      <p>ด่านที่ 5: กดปุ่มด้านล่างเพื่อรับคำใบ้สุดท้าย</p>
+      <button onclick="showFinalHint()">คลิกเพื่อดูคำใบ้</button>
+      <p id="finalHint" class="hidden">เป็นผู้ชาย</p>
+    </div>
+  </div>
+
+  <script>
+    let allAnswers = [];
+    let stage3Visible = false;
+
+    function updateAnswers() {
+      document.getElementById('answers').innerHTML = '<strong>คำตอบที่ผ่านแล้ว:</strong><br>' + allAnswers.join('<br>');
+    }
+
+    function checkStage1() {
+      const input = document.getElementById('answer1').value.trim();
+      if (input === '9.8' || input === '9.8 m/s^2' || input === '9.8 m/s²') {
+        document.getElementById('result1').innerText = 'ถูกต้อง! คำใบ้: อยู่ ม.6/1 อิอิ';
+        allAnswers.push('ด่าน 1: ' + input + ' → คำใบ้: อยู่ ม.6/1 อิอิ');
+        updateAnswers();
+        document.getElementById('stage1').classList.add('hidden');
+        document.getElementById('stage2').classList.remove('hidden');
+      } else {
+        document.getElementById('result1').innerText = 'ลองใหม่!';
+      }
+    }
+
+    function checkStage2() {
+      const input = document.getElementById('answer2').value.trim();
+      if (input === '1.28' || input === '1.28 วินาที' || input === '1.28s' || input === '1.28 sec') {
+        document.getElementById('result2').innerText = 'ถูกต้อง! คำใบ้: ㄆ และ เอียง3';
+        allAnswers.push('ด่าน 2: ' + input + ' → คำใบ้: ㄆ และ เอียง3');
+        updateAnswers();
+        document.getElementById('stage2').classList.add('hidden');
+        document.getElementById('stage3').classList.remove('hidden');
+      } else {
+        document.getElementById('result2').innerText = 'ผิดจ้า';
+      }
+    }
+
+    function checkStage3() {
+      const input = document.getElementById('answer3').value.trim().toLowerCase();
+      if (input === 'phu khum kot') {
+        document.getElementById('result3').innerText = 'ถูกต้อง! คำใบ้: Phu khum kot';
+        allAnswers.push('ด่าน 3: ' + input + ' → คำใบ้: Phu khum kot');
+        updateAnswers();
+        document.getElementById('stage3').classList.add('hidden');
+        document.getElementById('stage4').classList.remove('hidden');
+      } else {
+        document.getElementById('result3').innerText = 'ยังไม่ถูก';
+      }
+    }
+
+    function checkModCode() {
+      const input = document.getElementById('modCodeInput').value.trim();
+      if (input === 'ไม่ได้เรียน รด') {
+        document.getElementById('modCodeResult').innerText = 'ถูกต้อง! ไปต่อได้เลย';
+        allAnswers.push('ด่าน 4: ' + input);
+        updateAnswers();
+        document.getElementById('stage4').classList.add('hidden');
+        document.getElementById('stage5').classList.remove('hidden');
+      } else {
+        document.getElementById('modCodeResult').innerText = 'ไม่ถูก ลองใหม่';
+      }
+    }
+
+    function showFinalHint() {
+      document.getElementById('finalHint').classList.remove('hidden');
+      allAnswers.push('ด่าน 5: เป็นผู้ชาย');
+      updateAnswers();
+    }
+
+    window.addEventListener('deviceorientation', function(event) {
+      if (!stage3Visible && Math.abs(event.gamma) > 50) {
+        stage3Visible = true;
+        document.getElementById('tiltHint').innerText = 'ASCII: 80 104 117 32 107 104 117 109 32 107 111 116';
+      }
+    });
+  </script>
+</body>
+</html>
